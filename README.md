@@ -22,11 +22,20 @@ Make a new configuration file (`sudo nano /etc/nginx/conf.d/walmart.conf` or `su
 ```css
 server {
     listen 80;
-    server_name <domain.tld / 0.0.0.0>; # Replace with your domain or the IP address of your server
+    server_name <your.ip.or.domain>;
 
     location / {
         root /opt/walmart;
         index index.html index.htm;
+    }
+
+    location /hls {
+        types {
+            application/vnd.apple.mpegurl m3u8;
+            video/mp2t ts;
+        }
+        root /opt/walmart/stream;
+        add_header Cache-Control no-cache;
     }
 }
 
@@ -39,6 +48,10 @@ rtmp {
             live on;
             allow publish all;
             allow play all;
+            hls on;
+            hls_path /opt/walmart/stream;
+            hls_fragment 5s;
+            hls_playlist_length 30s; 
         }
     }
 }
