@@ -9,7 +9,7 @@ sudo tee /etc/nginx/conf.d/walmart.conf > /dev/null <<'EOF'
 # HTTP server block for serving webpage and HLS streams
 server {
     listen 80;
-    server_name your_domain.com; # Replace with your domain name
+    server_name 45.90.12.97; # Replace with your domain name
 
     location / {
         root /var/www/html; # Replace with the path to your webpage files
@@ -45,7 +45,7 @@ rtmp {
 }
 EOF
 
-# Create directory for HLS files
+# Create directory for HLS files if it doesn't exist
 sudo mkdir -p /var/www/hls
 
 # Set permissions for the HLS directory
