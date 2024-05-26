@@ -5,7 +5,7 @@ sudo apt update
 sudo apt install -y nginx libnginx-mod-rtmp
 
 # Create Nginx configuration file
-sudo tee /etc/nginx/conf.d/walmart.conf > /dev/null <<'EOF'
+sudo tee /etc/nginx/conf.d/walmart.conf > /dev/null <<EOF
 # HTTP server block for serving webpage and HLS streams
 server {
     listen 80;
